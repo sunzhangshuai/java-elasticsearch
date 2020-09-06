@@ -27,7 +27,7 @@ package com.sunchen.restapi.interfaces;
      *
      * @return array
      */
-    String source(String index, String course);
+    String source(String index, String[] course);
 
     /**
      * 脚本查询
