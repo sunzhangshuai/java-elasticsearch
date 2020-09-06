@@ -38,7 +38,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String searchColumn(String columns);
+     String searchColumn(String[] columns) throws Exception;
 
     /**
      * 集群健康检测
@@ -46,7 +46,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String health();
+     String health() throws Exception;
 
     /**
      * 分片级别健康检测
@@ -54,7 +54,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String shardsHealth();
+     String shardsHealth() throws Exception;
 
     /**
      * 指定索引健康检测
@@ -64,7 +64,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String indicesHealth(String indices);
+     String indicesHealth(String[] indices) throws Exception;
 
     /**
      * 指定索引的分片级别健康检测
@@ -74,7 +74,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String indicesShardsHealth(String indices);
+     String indicesShardsHealth(String[] indices) throws Exception;
 
     /**
      * 集群的详细信息
@@ -82,7 +82,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String cluster();
+     String cluster() throws Exception;
 
     /**
      * 获取集群的设置
@@ -90,7 +90,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String clusterSettings();
+     String clusterSettings() throws Exception;
 
     /**
      * 获取集群的设置，包含默认设置
@@ -98,7 +98,7 @@ public interface ClusterInterface {
      * @return 
     
      */
-     String clusterSettingsDefault();
+     String clusterSettingsDefault() throws Exception;
 
     /**
      * 获取分片信息，可指定是否获取表头，和要获取的列
@@ -109,5 +109,5 @@ public interface ClusterInterface {
      * @return mixed
     
      */
-     String shards(String title, String columns);
+     String shards(boolean title, String[] columns) throws Exception;
 }

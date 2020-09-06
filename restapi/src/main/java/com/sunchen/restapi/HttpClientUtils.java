@@ -1,6 +1,9 @@
 package com.sunchen.restapi;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -135,6 +139,23 @@ public class HttpClientUtils {
 	 */
 	public static HttpClientResult doPost(String url, Map<String, String> params) throws Exception {
 		return doPost(url, null, params);
+	}
+
+	public static HttpClientResult jsonPut(String url, String jsonObject) throws Exception {
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		HttpPut method = new HttpPut(url);
+		method.setHeader("Content-type", "application/json; charset=utf-8");
+		method.setHeader("Accept", "application/json");
+		// 创建httpResponse对象
+		CloseableHttpResponse httpResponse = null;
+
+		try {
+			// 执行请求并获得响应结果
+			return getHttpClientResult(httpResponse, httpClient, method);
+		} finally {
+			// 释放资源
+			release(httpResponse, httpClient);
+		}
 	}
 
 	/**
