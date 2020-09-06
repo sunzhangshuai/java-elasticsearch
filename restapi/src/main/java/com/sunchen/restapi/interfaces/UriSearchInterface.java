@@ -16,7 +16,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void search(String query, String df, String sort, String from, String size, String timeout, String profile);
+    String search(String query, String df, String sort, String from, String size, String timeout, String profile);
 
     /**
      * 范查询
@@ -25,7 +25,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  genericsSearch(String value);
+    String  genericsSearch(String value);
 
     /**
      * 第二种范查询
@@ -34,7 +34,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  mindGenericsSearch(String value);
+    String  mindGenericsSearch(String value);
 
     /**
      * 指定字段查询
@@ -44,7 +44,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  fieldSearch(String field, String value);
+    String  fieldSearch(String field, String value);
 
     /**
      * 短语查询，且，并且前后顺序一致
@@ -53,7 +53,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  phraseSearch(String array);
+    String  phraseSearch(String array);
 
     /**
      * 分组查询
@@ -62,7 +62,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  groupSearch(String array);
+    String  groupSearch(String array);
 
     /**
      * 且查询
@@ -71,7 +71,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  andSearch(String array);
+    String  andSearch(String array);
 
     /**
      * 或查询
@@ -80,7 +80,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  orSearch(String array);
+    String  orSearch(String array);
 
     /**
      * 非查询
@@ -89,7 +89,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  notSearch(String array);
+    String  notSearch(String array);
 
     /**
      * 带符号的查询
@@ -98,7 +98,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  symbolSearch(String array);
+    String  symbolSearch(String array);
 
     /**
      * 范围查询
@@ -107,7 +107,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  rangeSearch(String array);
+    String  rangeSearch(String array);
 
     /**
      * 通配符查询
@@ -116,7 +116,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  patternSearch(String string);
+    String  patternSearch(String string);
 
     /**
      * 模糊查询
@@ -125,7 +125,7 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void  fuzzySearch(String string);
+    String  fuzzySearch(String string);
 
     /**
      * 近似度查询
@@ -134,5 +134,5 @@ public interface UriSearchInterface {
      *
      * @return array
      */
-    void approximationQuery(String string);
+    String approximationQuery(String string);
 }
