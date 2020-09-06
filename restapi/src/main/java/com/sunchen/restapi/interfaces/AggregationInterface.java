@@ -9,19 +9,19 @@ package com.sunchen.restapi.interfaces;
      *
      * @return array
      */
-     void buckets();
+     String buckets();
 
     /**
      * 按照目的地进行分桶统计、并增加统计信息
      *
      * @return array
      */
-     void bucketsAndStats();
+     String bucketsAndStats();
 
     /**
      * 按照目的地统计天气信息和价格
      *
      * @return array
      */
-     void pipelineBuckets();
+     String pipelineBuckets();
 }

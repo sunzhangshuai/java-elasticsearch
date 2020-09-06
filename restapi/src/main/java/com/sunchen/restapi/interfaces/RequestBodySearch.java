@@ -17,7 +17,7 @@ package com.sunchen.restapi.interfaces;
      *
      * @return array
      */
-     void search(String query, String df, String sort, String from, String size, String timeout, String profile);
+     String search(String query, String df, String sort, String from, String size, String timeout, String profile);
 
     /**
      * 通过source查询
@@ -27,54 +27,54 @@ package com.sunchen.restapi.interfaces;
      *
      * @return array
      */
-     void source(String index, String course);
+    String source(String index, String course);
 
     /**
      * 脚本查询
      *
      * @return array
      */
-     void scriptField();
+    String scriptField();
 
     /**
      * 匹配查询
      *
      * @return array
      */
-     void match();
+    String match();
 
     /**
      * 匹配查询指定关联方式
      *
      * @return array
      */
-     void matchOperate();
+    String matchOperate();
 
     /**
      * 短语匹配
      *
      * @return array
      */
-     void matchPhrase();
+    String matchPhrase();
 
     /**
      * 短语匹配模糊匹配
      *
      * @return array
      */
-     void matchPhraseSlop();
+    String matchPhraseSlop();
 
     /**
      * 字符串查询
      *
      * @return array
      */
-     void queryString();
+    String queryString();
 
     /**
      * 简单字符串查询
      *
      * @return array
      */
-     void simpleQueryString();
+    String simpleQueryString();
 }

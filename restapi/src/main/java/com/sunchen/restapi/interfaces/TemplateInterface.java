@@ -9,17 +9,17 @@ package com.sunchen.restapi.interfaces;
      *
      * @return arrayi
      */
-     void indexTemplate();
+     String indexTemplate();
 
     /**
      * 动态模板、设置index的动态转换。
      *
      * @return array
      */
-     void dynamicTemplate();
+     String dynamicTemplate();
 
     /**
      * @return array
      */
-     void copyTo();
+     String copyTo();
 }
