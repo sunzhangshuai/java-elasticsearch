@@ -18,33 +18,33 @@ public class ClusterImpl implements ClusterInterface {
     private String apiUrl;
 
     @Override
-    public String nodes() throws Exception {
+    public String nodes() {
         HttpClientResult httpClientResult = HttpClientUtils.doGet(apiUrl + "/_cat/nodes");
         return httpClientResult.getContent();
     }
 
     @Override
-    public String nodesTable() throws Exception {
-        Map<String,String> paramMap = new HashMap<>(1);
-        paramMap.put("v","");
+    public String nodesTable() {
+        HashMap<String,Object>  paramMap = new HashMap<>(1);
+        paramMap.put("v", "");
         HttpClientResult httpClientResult = HttpClientUtils.doGet(apiUrl + "/_cat/nodes", paramMap);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String searchNode(String[] nodeNames) throws Exception {
-        String uri = apiUrl + "/_nodes/"+String.join(",", nodeNames);
+    public String searchNode(String[] nodeNames) {
+        String uri = apiUrl + "/_nodes/" + String.join(",", nodeNames);
 
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String searchColumn(String[] columns) throws Exception {
+    public String searchColumn(String[] columns) {
         String uri = apiUrl + "/_cat/nodes";
 
-        Map<String,String> paramMap = new HashMap<>(2);
-        paramMap.put("v","");
+        HashMap<String,Object>  paramMap = new HashMap<>(2);
+        paramMap.put("v", "");
         paramMap.put("h", String.join(",", columns));
 
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
@@ -52,23 +52,23 @@ public class ClusterImpl implements ClusterInterface {
     }
 
     @Override
-    public String health() throws Exception {
+    public String health() {
         String uri = apiUrl + "/_cluster/health";
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String shardsHealth() throws Exception {
+    public String shardsHealth() {
         String uri = apiUrl + "/_cluster/health";
-        Map<String,String> paramMap = new HashMap<>(1);
-        paramMap.put("level","shards");
+        HashMap<String,Object>  paramMap = new HashMap<>(1);
+        paramMap.put("level", "shards");
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String indicesHealth(String[] indices) throws Exception {
+    public String indicesHealth(String[] indices) {
         String uri = apiUrl + "/_cluster/health/" + String.join(",", indices);
         System.out.println(uri);
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
@@ -76,16 +76,16 @@ public class ClusterImpl implements ClusterInterface {
     }
 
     @Override
-    public String indicesShardsHealth(String[] indices) throws Exception {
+    public String indicesShardsHealth(String[] indices) {
         String uri = apiUrl + "/_cluster/health/" + String.join(",", indices);
-        Map<String,String> paramMap = new HashMap<>(1);
-        paramMap.put("level","shards");
+        HashMap<String,Object>  paramMap = new HashMap<>(1);
+        paramMap.put("level", "shards");
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String cluster() throws Exception {
+    public String cluster() {
         String uri = apiUrl + "/_cluster/state";
 
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
@@ -93,7 +93,7 @@ public class ClusterImpl implements ClusterInterface {
     }
 
     @Override
-    public String clusterSettings() throws Exception {
+    public String clusterSettings() {
         String uri = apiUrl + "/_cluster/settings";
 
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
@@ -101,18 +101,18 @@ public class ClusterImpl implements ClusterInterface {
     }
 
     @Override
-    public String clusterSettingsDefault() throws Exception {
+    public String clusterSettingsDefault() {
         String uri = apiUrl + "/_cluster/settings";
-        HashMap<String,String> paramMap = new HashMap<>(1);
+        HashMap<String,Object>  paramMap = new HashMap<>(1);
         paramMap.put("include_defaults", "true");
         HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
         return httpClientResult.getContent();
     }
 
     @Override
-    public String shards(boolean title, String[] columns) throws Exception {
+    public String shards(boolean title, String[] columns) {
         String uri = apiUrl + "/_cat/shards";
-        HashMap<String,String> paramMap = new HashMap<>(2);
+        HashMap<String,Object>  paramMap = new HashMap<>(2);
         if (title) {
             paramMap.put("v", "");
         }

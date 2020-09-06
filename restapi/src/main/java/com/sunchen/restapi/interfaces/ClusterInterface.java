@@ -8,106 +8,89 @@ public interface ClusterInterface {
      * 获取所有节点，不含表头
      *
      * @return string
-    
      */
-     String nodes() throws Exception;
+    String nodes();
 
     /**
      * 获取所有节点，含表头
      *
-     * @return 
-    
+     * @return string
      */
-     String nodesTable() throws Exception;
+    String nodesTable();
 
     /**
      * 通过节点名称获取节点详情
      *
-     * @param   nodeNames
-     *
-     * @return 
-    
+     * @param nodeNames
+     * @return
      */
-     String searchNode(String[] nodeNames) throws Exception;
+    String searchNode(String[] nodeNames);
 
     /**
      * 指定列获取所有节点信息
      *
-     * @param  columns
-     *
-     * @return 
-    
+     * @param columns
+     * @return
      */
-     String searchColumn(String[] columns) throws Exception;
+    String searchColumn(String[] columns);
 
     /**
      * 集群健康检测
      *
-     * @return 
-    
+     * @return
      */
-     String health() throws Exception;
+    String health();
 
     /**
      * 分片级别健康检测
      *
-     * @return 
-    
+     * @return
      */
-     String shardsHealth() throws Exception;
+    String shardsHealth();
 
     /**
      * 指定索引健康检测
      *
-     * @param   indices
-     *
-     * @return 
-    
+     * @param indices
+     * @return
      */
-     String indicesHealth(String[] indices) throws Exception;
+    String indicesHealth(String[] indices);
 
     /**
      * 指定索引的分片级别健康检测
      *
-     * @param   indices
-     *
-     * @return 
-    
+     * @param indices
+     * @return
      */
-     String indicesShardsHealth(String[] indices) throws Exception;
+    String indicesShardsHealth(String[] indices);
 
     /**
      * 集群的详细信息
      *
-     * @return 
-    
+     * @return
      */
-     String cluster() throws Exception;
+    String cluster();
 
     /**
      * 获取集群的设置
      *
-     * @return 
-    
+     * @return
      */
-     String clusterSettings() throws Exception;
+    String clusterSettings();
 
     /**
      * 获取集群的设置，包含默认设置
      *
-     * @return 
-    
+     * @return
      */
-     String clusterSettingsDefault() throws Exception;
+    String clusterSettingsDefault();
 
     /**
      * 获取分片信息，可指定是否获取表头，和要获取的列
      *
-     * @param    title
-     * @param   columns
-     *
+     * @param title
+     * @param columns
      * @return mixed
-    
      */
-     String shards(boolean title, String[] columns) throws Exception;
+    String shards(boolean title, String[] columns);
 }

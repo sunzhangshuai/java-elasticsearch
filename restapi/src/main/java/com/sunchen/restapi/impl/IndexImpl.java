@@ -1,13 +1,13 @@
 package com.sunchen.restapi.impl;
 
-import com.sunchen.restapi.HttpClientResult;
+
 import com.sunchen.restapi.HttpClientUtils;
 import com.sunchen.restapi.interfaces.IndexInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * IndexImpl:
@@ -21,85 +21,69 @@ public class IndexImpl implements IndexInterface {
     private String apiUrl;
 
     @Override
-    public String create(String index, String json) throws Exception {
-        String uri = apiUrl + "/" + index;
-        HttpClientResult httpClientResult = HttpClientUtils.jsonPut(uri, json);
-        return httpClientResult.getContent();
+    public String create(String index, Map<String, Object> paramMap) {
+        String url = apiUrl + "/" + index;
+        return HttpClientUtils.doPut(url).getContent();
     }
 
     @Override
-    public String indices(boolean title, String[] columns, String indexMatching) throws Exception {
-        String uri = apiUrl + "/_cat/indices";
-        HashMap<String, String> paramMap = new HashMap<>(2);
-        if (!StringUtils.isEmpty(indexMatching)) {
-            uri += '/' + indexMatching;
-        }
+    public String indices(boolean title, String[] columns, String indexMatching) {
+        HashMap<String,Object>  paramMaps = new HashMap<>(2);
         if (title) {
-            paramMap.put("v", "");
+            paramMaps.put("v","");
         }
         if (columns != null) {
-            paramMap.put("h", String.join(",", columns));
+            paramMaps.put("h", String.join(",", columns));
         }
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
-        return httpClientResult.getContent();
+        String url = apiUrl + "/_cat/indices/" + indexMatching;
+        return HttpClientUtils.doGet(url, paramMaps).getContent();
     }
 
     @Override
-    public String greenIndices() throws Exception {
-        String uri = apiUrl + "/_cat/indices";
-        HashMap<String, String> paramMap = new HashMap<>(1);
-        paramMap.put("health", "green");
-
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
-        return httpClientResult.getContent();
+    public String greenIndices() {
+        HashMap<String,Object>  paramMaps = new HashMap<>(1);
+        paramMaps.put("health","green");
+        String url = apiUrl + "_cat/indices";
+        return HttpClientUtils.doGet(url, paramMaps).getContent();
     }
 
     @Override
-    public String sortIndicesByDocuments() throws Exception {
-        String uri = apiUrl + "/_cat/indices";
-        HashMap<String, String> paramMap = new HashMap<>(1);
-        paramMap.put("s", "docs.count:desc");
-
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
-        return httpClientResult.getContent();
+    public String sortIndicesByDocuments() {
+        HashMap<String,Object>  paramMaps = new HashMap<>(1);
+        paramMaps.put("s","docs.count:desc");
+        String url = apiUrl + "_cat/indices";
+        return HttpClientUtils.doGet(url, paramMaps).getContent();
     }
 
     @Override
-    public String memoryForIndices() throws Exception {
-        String uri = apiUrl + "/_cat/indices";
-        HashMap<String, String> paramMap = new HashMap<>(1);
-        paramMap.put("s", "tm:desc");
-        paramMap.put("v", "");
-        paramMap.put("h", "i, tm");
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri, paramMap);
-        return httpClientResult.getContent();
+    public String memoryForIndices() {
+        HashMap<String,Object>  paramMaps = new HashMap<>(1);
+        paramMaps.put("h","i,tm");
+        String url = apiUrl + "_cat/indices";
+        return HttpClientUtils.doGet(url, paramMaps).getContent();
     }
 
     @Override
-    public String indexInfo(String index) throws Exception {
-        String uri = apiUrl + "/" + index;
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
-        return httpClientResult.getContent();
+    public String indexInfo(String index) {
+        String url = apiUrl + "/" + index;
+        return HttpClientUtils.doGet(url).getContent();
     }
 
     @Override
-    public String documentCount(String index) throws Exception {
-        String uri = apiUrl + "/" + index + "/_count";
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
-        return httpClientResult.getContent();
+    public String documentCount(String index) {
+        String url = apiUrl + "/" + index + "/_count";
+        return HttpClientUtils.doGet(url).getContent();
     }
 
     @Override
-    public String catDocumentFormat(String index) throws Exception {
-        String uri = apiUrl + "/" + index + "/_search";
-        HttpClientResult httpClientResult = HttpClientUtils.doGet(uri);
-        return httpClientResult.getContent();
+    public String catDocumentFormat(String index) {
+        String url = apiUrl + "/" + index + "/_search";
+        return HttpClientUtils.doGet(url).getContent();
     }
 
     @Override
-    public String delete(String index) throws Exception {
-        String uri = apiUrl + "/" + index;
-        HttpClientResult httpClientResult = HttpClientUtils.doDelete(uri);
-        return httpClientResult.getContent();
+    public String delete(String index) {
+        String url = apiUrl + "/delete" + index;
+        return HttpClientUtils.doPost(url).getContent();
     }
 }

@@ -1,5 +1,7 @@
 package com.sunchen.restapi.interfaces;
 
+import java.util.Map;
+
 /**
  * DocumentInterface:
  *
@@ -11,24 +13,24 @@ package com.sunchen.restapi.interfaces;
      * 创建不指定id的文档
      *
      * @param  index
-     * @param  document
+     * @param  json
      *
      * @return array
     
      */
-     String  create(String index, String document);
+     String create(String index, String json);
 
     /**
      * 创建指定id的文档
      *
      * @param     index
      * @param        id
-     * @param      document
+     * @param      json
      *
      * @return array
     
      */
-     String  createById(String index, String id, String document);
+     String  createById(String index, String id, String json);
 
     /**
      * 创建指定id的文档，第二种写法
@@ -104,7 +106,7 @@ package com.sunchen.restapi.interfaces;
      * @return array
     
      */
-     String  mget(String param);
+     String mGet(String param);
 
     /**
      * 指定索引批量获取
@@ -115,7 +117,7 @@ package com.sunchen.restapi.interfaces;
      * @return array
     
      */
-     String  mgetByIndex(String index, String param);
+     String mGetByIndex(String index, String param);
 
     /**
      * 指定索引批量查询
@@ -126,5 +128,5 @@ package com.sunchen.restapi.interfaces;
      * @return mixed
     
      */
-     String  msearch(String index, String param);
+     String mSearch(String index, String param);
 }
